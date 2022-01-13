@@ -8,11 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   newMemberName = '';
   members: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-  numberOfTeams: number = 0;
+  numberOfTeams: number = 2;
   teams: string[][] = [];
+  errorMessage = '';
 
   addMember() {
     if (this.newMemberName === '') {
+      this.errorMessage = "Name can't be empty";
       return;
     }
     this.members.push(this.newMemberName);
@@ -24,6 +26,7 @@ export class AppComponent {
     this.members = [];
     this.numberOfTeams = 0;
     this.teams = [];
+    this.errorMessage = '';
   }
 
   generateTeams() {
@@ -50,5 +53,9 @@ export class AppComponent {
 
       if (teamsWithMaxMember > 0) teamsWithMaxMember--;
     }
+  }
+
+  checkErrorMsg() {
+    if (this.newMemberName.length > 0) this.errorMessage = '';
   }
 }

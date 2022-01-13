@@ -11,8 +11,10 @@
         placeholder="Name"
         [(ngModel)]="newMemberName"
         (keyup.enter)="addMember()"
+        (input)="checkErrorMsg()"
       />
       <button (click)="addMember()">Add</button>
+      <p *ngIf="errorMessage !== ''" class="error-msg">{{ errorMessage }}</p>
     </div>
 
     <div class="generate-teams-container">
@@ -20,7 +22,7 @@
         type="number"
         placeholder="# of teams"
         [(ngModel)]="numberOfTeams"
-        min="0"
+        min="2"
         [max]="members.length"
       />
       <button (click)="generateTeams()">Generate</button>
