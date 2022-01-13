@@ -25,3 +25,12 @@
     </div>
   </div>
 </div>
+
+<div class="container" *ngFor="let team of teams; let i = index">
+  <div class="ui card">
+    <h3>Team {{ i + 1 }}</h3>
+    <ul class="list">
+      <li *ngFor="let member of teams[i]">{{ member }}</li>
+    </ul>
+  </div>
+</div>
