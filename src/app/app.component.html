@@ -32,7 +32,10 @@
 
 <div class="container" *ngFor="let team of teams; let i = index">
   <div class="ui card">
-    <h3>Team {{ i + 1 }}</h3>
+    <h3>
+      Team {{ i + 1 }} - {{ team.length }}
+      {{ team.length === 1 ? "member" : "members" }}
+    </h3>
     <ul class="list">
       <li *ngFor="let member of teams[i]">{{ member }}</li>
     </ul>
