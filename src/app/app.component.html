@@ -6,7 +6,12 @@
     </ul>
 
     <div class="add-members-container">
-      <input type="text" placeholder="Name" [(ngModel)]="newMemberName" />
+      <input
+        type="text"
+        placeholder="Name"
+        [(ngModel)]="newMemberName"
+        (keyup.enter)="addMember()"
+      />
       <button (click)="addMember()">Add</button>
     </div>
 
