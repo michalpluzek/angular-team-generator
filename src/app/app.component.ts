@@ -12,6 +12,9 @@ export class AppComponent {
   teams: string[][] = [];
 
   addMember() {
+    if (this.newMemberName === '') {
+      return;
+    }
     this.members.push(this.newMemberName);
     this.newMemberName = '';
   }
@@ -26,26 +29,15 @@ export class AppComponent {
   generateTeams() {
     const memberList = [...this.members];
     const memberInTeams = memberList.length / this.numberOfTeams;
-    const maxNumberOfMember = Math.ceil(memberInTeams);
-    const minNumberOfMember = Math.floor(memberInTeams);
-    let isMaxNumberOfMemberInTeam = false;
+    let teamsWithMaxMember = Math.round(
+      (memberInTeams - Math.floor(memberInTeams)) * this.numberOfTeams
+    );
 
     for (let i = 0; i < this.numberOfTeams; i++) {
       this.teams.push([]);
 
-      if (!isMaxNumberOfMemberInTeam) {
-        for (let idx = 0; idx < maxNumberOfMember; idx++) {
-          const randomMemberIndex = Math.floor(
-            Math.random() * memberList.length
-          );
-          const randomMember = memberList[randomMemberIndex];
-          memberList.splice(randomMemberIndex, 1);
-
-          this.teams[i].push(randomMember);
-        }
-        isMaxNumberOfMemberInTeam = true;
-      } else {
-        for (let idx = 0; idx < minNumberOfMember; idx++) {
+      for (let idx = 0; idx < memberInTeams; idx++) {
+        if (teamsWithMaxMember > 0 || idx < memberInTeams - 1) {
           const randomMemberIndex = Math.floor(
             Math.random() * memberList.length
           );
@@ -55,6 +47,8 @@ export class AppComponent {
           this.teams[i].push(randomMember);
         }
       }
+
+      if (teamsWithMaxMember > 0) teamsWithMaxMember--;
     }
   }
 }
