@@ -20,6 +20,8 @@
         type="number"
         placeholder="# of teams"
         [(ngModel)]="numberOfTeams"
+        min="0"
+        [max]="members.length"
       />
       <button (click)="generateTeams()">Generate</button>
     </div>
