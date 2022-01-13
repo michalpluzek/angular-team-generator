@@ -28,11 +28,14 @@
       <button (click)="generateTeams()">Generate</button>
     </div>
 
-    <div class="teams-container"><button (click)="clear()">Clear</button></div>
+    <button class="clearBtn" (click)="clear()">Clear</button>
   </div>
 </div>
 
-<div class="container" *ngFor="let team of teams; let i = index">
+<div
+  class="container teams-container"
+  *ngFor="let team of teams; let i = index"
+>
   <div class="ui card">
     <h3>
       Team {{ i + 1 }} - {{ team.length }}
