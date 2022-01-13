@@ -14,7 +14,9 @@
         (input)="checkErrorMsg()"
       />
       <button (click)="addMember()">Add</button>
-      <p *ngIf="errorMessage !== ''" class="error-msg">{{ errorMessage }}</p>
+      <p *ngIf="errorNameMessage !== ''" class="error-msg">
+        {{ errorNameMessage }}
+      </p>
     </div>
 
     <div class="generate-teams-container">
@@ -22,10 +24,14 @@
         type="number"
         placeholder="# of teams"
         [(ngModel)]="numberOfTeams"
-        min="2"
+        (input)="checkErrorMsg()"
+        [min]="minNumberOfTeams"
         [max]="members.length"
       />
       <button (click)="generateTeams()">Generate</button>
+      <p *ngIf="errorNumberOfTeamsMessage !== ''" class="error-msg">
+        {{ errorNumberOfTeamsMessage }}
+      </p>
     </div>
 
     <button class="clearBtn" (click)="clear()">Clear</button>

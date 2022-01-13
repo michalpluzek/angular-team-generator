@@ -8,13 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   newMemberName = '';
   members: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
-  numberOfTeams: number = 2;
+  numberOfTeams: number | '' = '';
   teams: string[][] = [];
-  errorMessage = '';
+  errorNameMessage = '';
+  errorNumberOfTeamsMessage = '';
+  minNumberOfTeams = 2;
 
   addMember() {
     if (this.newMemberName === '') {
-      this.errorMessage = "Name can't be empty";
+      this.errorNameMessage = "Name can't be empty.";
       return;
     }
     this.members.push(this.newMemberName);
@@ -26,14 +28,18 @@ export class AppComponent {
     this.members = [];
     this.numberOfTeams = 0;
     this.teams = [];
-    this.errorMessage = '';
+    this.errorNameMessage = '';
+    this.errorNumberOfTeamsMessage = '';
   }
 
   generateTeams() {
+    if (this.numberOfTeams < 2) {
+      this.errorNumberOfTeamsMessage = 'There must be at least 2 teams.';
+    }
     const memberList = [...this.members];
-    const memberInTeams = memberList.length / this.numberOfTeams;
+    const memberInTeams = memberList.length / Number(this.numberOfTeams);
     let teamsWithMaxMember = Math.round(
-      (memberInTeams - Math.floor(memberInTeams)) * this.numberOfTeams
+      (memberInTeams - Math.floor(memberInTeams)) * Number(this.numberOfTeams)
     );
 
     for (let i = 0; i < this.numberOfTeams; i++) {
@@ -56,6 +62,7 @@ export class AppComponent {
   }
 
   checkErrorMsg() {
-    if (this.newMemberName.length > 0) this.errorMessage = '';
+    if (this.newMemberName.length > 0) this.errorNameMessage = '';
+    if (this.newMemberName.length > 0) this.errorNumberOfTeamsMessage = '';
   }
 }
