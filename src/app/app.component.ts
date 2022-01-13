@@ -7,13 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   newMemberName = '';
-  members: string[] = ['1', '2', '3', '4', '5', '6', '7'];
+  members: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
   numberOfTeams: number = 0;
   teams: string[][] = [];
 
   addMember() {
     this.members.push(this.newMemberName);
     this.newMemberName = '';
+  }
+
+  clear() {
+    this.newMemberName = '';
+    this.members = [];
+    this.numberOfTeams = 0;
+    this.teams = [];
   }
 
   generateTeams() {
@@ -36,7 +43,6 @@ export class AppComponent {
 
           this.teams[i].push(randomMember);
         }
-
         isMaxNumberOfMemberInTeam = true;
       } else {
         for (let idx = 0; idx < minNumberOfMember; idx++) {
@@ -50,6 +56,5 @@ export class AppComponent {
         }
       }
     }
-    console.log(this.teams);
   }
 }
