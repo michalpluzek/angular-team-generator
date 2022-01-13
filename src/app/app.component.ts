@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   newMemberName = '';
   members: string[] = [];
-  numberOfTeams = 0;
+  numberOfTeams: number | null = null;
+
+  addMember() {
+    this.members.push(this.newMemberName);
+    this.newMemberName = '';
+  }
+
+  generateTeams() {}
 }
