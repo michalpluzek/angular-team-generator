@@ -38,27 +38,20 @@ export class AppComponent {
       return;
     }
     const memberList = [...this.members];
-    const memberInTeams = memberList.length / Number(this.numberOfTeams);
-    let teamsWithMaxMember = Math.round(
-      (memberInTeams - Math.floor(memberInTeams)) * Number(this.numberOfTeams)
-    );
 
-    for (let i = 0; i < this.numberOfTeams; i++) {
-      this.teams.push([]);
-
-      for (let idx = 0; idx < memberInTeams; idx++) {
-        if (teamsWithMaxMember > 0 || idx < memberInTeams - 1) {
+    while (memberList.length > 0) {
+      for (let i = 0; i < this.numberOfTeams; i++) {
+        if (memberList.length !== 0) {
           const randomMemberIndex = Math.floor(
             Math.random() * memberList.length
           );
-          const randomMember = memberList[randomMemberIndex];
-          memberList.splice(randomMemberIndex, 1);
+          const randomMember = memberList.splice(randomMemberIndex, 1);
 
-          this.teams[i].push(randomMember);
+          if (!this.teams[i]) this.teams.push([]);
+
+          this.teams[i].push(randomMember[0]);
         }
       }
-
-      if (teamsWithMaxMember > 0) teamsWithMaxMember--;
     }
   }
 
