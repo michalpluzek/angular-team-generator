@@ -35,6 +35,7 @@ export class AppComponent {
   generateTeams() {
     if (this.numberOfTeams < 2) {
       this.errorNumberOfTeamsMessage = 'There must be at least 2 teams.';
+      return;
     }
     const memberList = [...this.members];
     const memberInTeams = memberList.length / Number(this.numberOfTeams);
