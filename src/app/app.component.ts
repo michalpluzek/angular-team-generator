@@ -41,16 +41,13 @@ export class AppComponent {
 
     while (memberList.length > 0) {
       for (let i = 0; i < this.numberOfTeams; i++) {
-        if (memberList.length !== 0) {
-          const randomMemberIndex = Math.floor(
-            Math.random() * memberList.length
-          );
-          const randomMember = memberList.splice(randomMemberIndex, 1);
+        if (memberList.length === 0) break;
+        const randomMemberIndex = Math.floor(Math.random() * memberList.length);
+        const randomMember = memberList.splice(randomMemberIndex, 1);
 
-          if (!this.teams[i]) this.teams.push([]);
+        if (!this.teams[i]) this.teams.push([]);
 
-          this.teams[i].push(randomMember[0]);
-        }
+        this.teams[i].push(randomMember[0]);
       }
     }
   }
