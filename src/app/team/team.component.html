@@ -4,6 +4,6 @@
     {{ team.length === 1 ? "member" : "members" }}
   </h3>
   <ul>
-    <li *ngFor="let member of team">{{ member }}</li>
+    <li *ngFor="let member of team">{{ member | uppercase }}</li>
   </ul>
 </div>
