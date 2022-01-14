@@ -39,13 +39,11 @@
 </div>
 
 <div class="teams-container" *ngIf="teams.length > 0">
-  <div class="ui card team-container" *ngFor="let team of teams; let i = index">
-    <h3>
-      Team {{ i + 1 }} - {{ team.length }}
-      {{ team.length === 1 ? "member" : "members" }}
-    </h3>
-    <ul>
-      <li *ngFor="let member of team">{{ member }}</li>
-    </ul>
-  </div>
+  <app-team
+    class="ui card"
+    *ngFor="let team of teams; let i = index"
+    [team]="team"
+    [index]="i"
+  >
+  </app-team>
 </div>
