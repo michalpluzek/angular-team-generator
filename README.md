@@ -1,6 +1,7 @@
 # AngularTeamGenerator
 
-Project from YT https://www.youtube.com/watch?v=WHv1YQUg6ow&ab_channel=LaithHarb
+Design taken from YT + my modifications
+https://www.youtube.com/watch?v=WHv1YQUg6ow&ab_channel=LaithHarb
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
